@@ -32,59 +32,33 @@ O **VRI** transforma o Claude (Project ou Code) em um **especialista em engenhar
 
 ---
 
-## 🔄 Fluxo completo (uma imagem vale mais que mil palavras)
+## 🔄 Fluxo completo
 
 ```mermaid
 flowchart TD
-    subgraph INPUT[📥 ENTRADA]
-        A[📸 Imagem / Video<br/>Screenshot, mockup, foto, vídeo]
-    end
-
-    subgraph ANALYSIS[🔬 ANÁLISE — /analisar]
-        B[Fase 0: Metadados<br/>resolução, escala, viewport, tema]
-        C[Fase 1: Perguntas<br/>máx 7, só o que muda o resultado]
-        D[Fase 2: Forense<br/>regiões + coords, OCR literal,<br/>tipografia, cores, espaçamentos,<br/>hierarquia, inconsistências, estrutura [INFERIDA]]
-    end
-
-    subgraph SPEC[📋 ESPECIFICAÇÃO — /especificar]
-        E[spec/specification.md<br/>documentação técnica completa]
-        F[spec/requirements.md<br/>matriz REQ-### ↔ origem]
-        G[spec/tokens.json<br/>design tokens validados]
-        H[spec/regions.json<br/>regiões nomeadas [x,y,w,h]]
-        I[spec/components.md<br/>inventário de componentes]
-        J[spec/acceptance.md<br/>critérios de aceitação]
-    end
-
-    subgraph GATE[🤝 PORTÃO DE AUTORIZAÇÃO]
-        K{Autorização explícita?<br/>"Autorizo" · "pode implementar" · /implementar}
-        L[Aguardar — respostas ambíguas<br/>"ok" "legal" "continua" NÃO contam]
-    end
-
-    subgraph BUILD[🏗️ IMPLEMENTAÇÃO — /implementar]
-        M[10 etapas fixas:<br/>1. Estrutura/geometria → 2. Layout → 3. Tipografia<br/>4. Cores → 5. Assets → 6. Componentes<br/>7. Animações → 8. Responsividade<br/>9. Refinamento → 10. Validação]
-        N[Assets ausentes = PLACEHOLDER<br/>com dimensões exatas]
-        O[Estados/animações só se evidenciados]
-    end
-
-    subgraph VALIDATE[✅ VALIDAÇÃO — /validar]
-        P[Screenshot Playwright<br/>mesma resolução/escala]
-        Q[Diff por região<br/>image_diff.py]
-        R[Heatmap + Overlay + Side-by-side]
-        S[Relatório 8 categorias<br/>status + evidências + pendências]
-        T[Máx 5 ciclos de correção<br/>prioridade: Crítica→Alta→Média→Baixa]
-    end
-
-    subgraph OUTPUT[📦 ENTREGA]
-        U[✅ Verificada / ⚠️ Parcial / ❌ Não verificada / 🔴 Divergente]
-        V[Observado · Estimado · Implementado · Testado · Não validado · Limitações]
-    end
-
-    A --> B --> C --> D --> E & F & G & H & I & J
-    E & F & G & H & I & J --> K
-    K -->|Não| L
-    K -->|Sim| M --> N --> O --> P --> Q --> R --> S --> T
-    T -->|Divergências| Q
-    T -->|Aprovado| U & V
+    A[Entrada: Imagem ou Video] --> B[Fase 0: Metadados]
+    B --> C[Fase 1: Perguntas max 7]
+    C --> D[Fase 2: Analise Forense]
+    D --> E[spec/specification.md]
+    D --> F[spec/requirements.md]
+    D --> G[spec/tokens.json]
+    D --> H[spec/regions.json]
+    D --> I[spec/components.md]
+    D --> J[spec/acceptance.md]
+    E --> K{Autorizacao Explicita?}
+    F --> K
+    G --> K
+    H --> K
+    I --> K
+    J --> K
+    K -->|Nao| L[Aguardar: Autorizo / pode implementar /implementar]
+    K -->|Sim| M[Implementacao: 10 etapas]
+    M --> N[Validacao: Playwright + Diff]
+    N --> O[Heatmap + Overlay + Side-by-side]
+    O --> P[Relatorio 8 categorias]
+    P --> Q{Divergencias?}
+    Q -->|Sim| N
+    Q -->|Nao| R[Entrega: Verificada/Parcial/Nao verificada/Divergente]
 ```
 
 ---
@@ -107,63 +81,82 @@ flowchart TD
 
 ```mermaid
 flowchart LR
-    subgraph PROJECT[🌐 Claude Web — Project]
-        direction TB
+    subgraph PROJECT[Claude Web Project]
         P1[1. Criar Project]
-        P2[2. Colar CLAUDE_PROJECT_INSTRUCTIONS.md<br/>nas Instructions]
-        P3[3. Anexar instructions/,<br/>templates/, examples/<br/>como Knowledge]
-        P4[4. Usar: anexar imagem →<br/>/analisar → /especificar →<br/>autorizar → /implementar → /validar]
+        P2[2. Colar Instructions]
+        P3[3. Anexar Knowledge: instructions templates examples]
+        P4[4. Usar: imagem + /analisar]
         P1 --> P2 --> P3 --> P4
     end
 
-    subgraph CODE[💻 Claude Code — Local]
-        direction TB
-        C1[python3 tools/make_handoff.py<br/>--target ../meu-projeto]
-        C2[Gera:<br/>CLAUDE.md<br/>.claude/commands/<br/>tools/ (12 scripts)<br/>spec/ (templates)<br/>references/ assets/ reports/]
-        C3[Abrir Claude Code<br/>na pasta do projeto]
-        C4[Usar: /analisar → /especificar →<br/>/implementar → /validar]
+    subgraph CODE[Claude Code Local]
+        C1[make_handoff.py --target]
+        C2[Gera: CLAUDE.md commands tools spec]
+        C3[cd projeto && claude]
+        C4[Usar: /analisar /especificar /implementar /validar]
         C1 --> C2 --> C3 --> C4
     end
-
-    style PROJECT fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px
-    style CODE fill:#e3f2fd,stroke:#1565c0,stroke-width:2px
 ```
 
-### 🌐 Instalação no Claude Project (Web) — 2 min
+---
 
-| Passo | Ação |
-|-------|------|
-| 1 | Crie um **Project** novo |
-| 2 | Cole `CLAUDE_PROJECT_INSTRUCTIONS.md` nas **Instructions** |
-| 3 | Como **Knowledge**, anexe pastas: `instructions/`, `templates/`, `examples/` |
-| 4 | (Opcional) Anexe `tools/` se seu ambiente executa Python |
-| 5 | Pronto — anexe imagem e use `/analisar` |
+## 🌐 Guia visual: Instalação no Claude Project (Web) — 2 min
 
-> `tools/`, `tests/`, `claude-code-handoff/` são para uso local/repo; **não precisam ir no Project**.
+### Passo 1: Criar Project novo
+![Passo 1](docs/guides/guide-project-01-create.png)
 
-### 💻 Uso com o Claude Code (Local)
+### Passo 2: Colar Instruções
+![Passo 2](docs/guides/guide-project-02-instructions.png)
+
+### Passo 3: Anexar Knowledge (3 pastas)
+![Passo 3](docs/guides/guide-project-03-knowledge.png)
+
+### Passo 4: Usar — anexar imagem + /analisar
+![Passo 4](docs/guides/guide-project-04-analyze.png)
+
+### Passo 5: Fluxo completo — responder → /especificar → Autorizar → /implementar → /validar
+![Passo 5](docs/guides/guide-project-05-full-flow.png)
+
+> **O que vai no Knowledge:** `instructions/` (11 .md), `templates/` (7), `examples/` (2)  
+> **NÃO precisa:** `tools/`, `tests/`, `claude-code-handoff/` (são para uso local)
+
+---
+
+## 💻 Guia visual: Uso com Claude Code (Local)
+
+### Passo 1: Gerar handoff na pasta do seu projeto
+![Passo 1](docs/guides/guide-code-01-handoff.png)
 
 ```bash
-# Na raiz do VRI
+# Na raiz do repo VRI
 python3 tools/make_handoff.py --target ../meu-projeto-real
 ```
 
-Gera na pasta do seu projeto:
+### Passo 2: Abrir Claude Code na pasta
+![Passo 2](docs/guides/guide-code-02-open.png)
+
+```bash
+cd ../meu-projeto-real && claude
 ```
-meu-projeto-real/
-├── CLAUDE.md                    # Regras de implementação
-├── .claude/commands/            # /analisar, /especificar, /implementar, /validar
-├── tools/                       # 12 scripts essenciais
-├── spec/
-│   ├── specification.md         # Template
-│   ├── requirements.md          # Matriz REQ
-│   ├── tokens.json              # Design tokens
-│   ├── components.md            # Inventário
-│   ├── acceptance.md            # Critérios
-│   └── regions.json             # Regiões (auto se houver ref)
-├── references/                  # Suas imagens aqui
-├── assets/                      # Assets extraídos
-└── reports/                     # Screenshots, diffs, relatórios
+
+### Passo 3: Colar referências + /analisar
+![Passo 3](docs/guides/guide-code-03-analyze.png)
+
+```bash
+cp seus-screenshots.png references/
+# No Claude Code:
+/analisar
+```
+
+### Passo 4: Autorizar + /implementar + /validar
+![Passo 4](docs/guides/guide-code-04-implement-validate.png)
+
+```bash
+# No Claude Code:
+/especificar
+Autorizo
+/implementar
+/validar
 ```
 
 ---
@@ -172,17 +165,15 @@ meu-projeto-real/
 
 ```mermaid
 flowchart TD
-    S1[1️⃣ Estrutura<br/>e geometria] --> S2[2️⃣ Layout<br/>e posicionamento]
-    S2 --> S3[3️⃣ Tipografia]
-    S3 --> S4[4️⃣ Cores e<br/>identidade visual]
-    S4 --> S5[5️⃣ Imagens<br/>e assets]
-    S5 --> S6[6️⃣ Componentes]
-    S6 --> S7[7️⃣ Animações<br/>e efeitos]
-    S7 --> S8[8️⃣ Responsividade]
-    S8 --> S9[9️⃣ Refinamento<br/>visual]
-    S9 --> S10[🔟 Validação<br/>final]
-    style S1 fill:#e3f2fd,stroke:#1565c0
-    style S10 fill:#fff3e0,stroke:#ef6c00,stroke-width:3px
+    S1[1. Estrutura e Geometria] --> S2[2. Layout e Posicionamento]
+    S2 --> S3[3. Tipografia]
+    S3 --> S4[4. Cores e Identidade]
+    S4 --> S5[5. Imagens e Assets]
+    S5 --> S6[6. Componentes]
+    S6 --> S7[7. Animacoes e Efeitos]
+    S7 --> S8[8. Responsividade]
+    S8 --> S9[9. Refinamento Visual]
+    S9 --> S10[10. Validacao Final]
 ```
 
 > Cada etapa só avança quando a anterior passa na validação visual. **Nenhum atalho.**
@@ -211,11 +202,11 @@ Toda medida, cor, fonte e decisão carrega **tag + confiança**:
 ```mermaid
 pie title Avaliação por categoria (peso igual)
     "Estrutural" : 1
-    "Geométrica" : 1
-    "Tipográfica" : 1
-    "Cromática" : 1
+    "Geometrica" : 1
+    "Tipografica" : 1
+    "Cromatica" : 1
     "Assets" : 1
-    "Animações" : 1
+    "Animacoes" : 1
     "Responsividade" : 1
     "Funcionalidade" : 1
 ```
@@ -262,7 +253,8 @@ VISUAL-REFERENCE-INTELLIGENCE/
 │   ├── run_tool_checks.py               # Autoteste (10 checks)
 │   └── TEST_KIT.md                      # 8 prompts de teste P1–P8
 └── 📁 docs/                             # Assets visuais p/ README
-    └── diff-example/                    # Heatmap, overlay, side-by-side reais
+    ├── diff-example/                    # Heatmap, overlay, side-by-side reais
+    └── guides/                          # Imagens passo a passo (guias visuais)
 ```
 
 ---

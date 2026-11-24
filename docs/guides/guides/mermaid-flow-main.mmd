@@ -1,0 +1,24 @@
+flowchart TD
+    A[Entrada: Imagem ou Video] --> B[Fase 0: Metadados]
+    B --> C[Fase 1: Perguntas max 7]
+    C --> D[Fase 2: Analise Forense]
+    D --> E[spec/specification.md]
+    D --> F[spec/requirements.md]
+    D --> G[spec/tokens.json]
+    D --> H[spec/regions.json]
+    D --> I[spec/components.md]
+    D --> J[spec/acceptance.md]
+    E --> K{Autorizacao Explicita?}
+    F --> K
+    G --> K
+    H --> K
+    I --> K
+    J --> K
+    K -->|Nao| L[Aguardar: Autorizo / pode implementar /implementar]
+    K -->|Sim| M[Implementacao: 10 etapas]
+    M --> N[Validacao: Playwright + Diff]
+    N --> O[Heatmap + Overlay + Side-by-side]
+    O --> P[Relatorio 8 categorias]
+    P --> Q{Divergencias?}
+    Q -->|Sim| N
+    Q -->|Nao| R[Entrega: Verificada/Parcial/Nao verificada/Divergente]

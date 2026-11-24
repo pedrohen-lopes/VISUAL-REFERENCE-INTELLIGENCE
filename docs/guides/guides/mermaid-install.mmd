@@ -1,0 +1,16 @@
+flowchart LR
+    subgraph PROJECT[Claude Web Project]
+        P1[1. Criar Project]
+        P2[2. Colar Instructions]
+        P3[3. Anexar Knowledge: instructions templates examples]
+        P4[4. Usar: imagem + /analisar]
+        P1 --> P2 --> P3 --> P4
+    end
+
+    subgraph CODE[Claude Code Local]
+        C1[make_handoff.py --target]
+        C2[Gera: CLAUDE.md commands tools spec]
+        C3[cd projeto && claude]
+        C4[Usar: /analisar /especificar /implementar /validar]
+        C1 --> C2 --> C3 --> C4
+    end
