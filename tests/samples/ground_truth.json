@@ -1,0 +1,215 @@
+{
+  "landing_ref.png": {
+    "viewport_css_px": [
+      1440,
+      900
+    ],
+    "escala": 1,
+    "regioes": {
+      "A_header": [
+        0,
+        0,
+        1440,
+        80
+      ],
+      "B_hero": [
+        0,
+        80,
+        1440,
+        560
+      ],
+      "C_cards": [
+        0,
+        640,
+        1440,
+        180
+      ],
+      "D_footer": [
+        0,
+        820,
+        1440,
+        80
+      ]
+    },
+    "cores": {
+      "fundo_pagina": "#FFF8F0",
+      "header": "#FFFFFF",
+      "hero": "#F3E3CF",
+      "botao": "#2E7D32",
+      "footer": "#3B2A20",
+      "imagem_hero": "#C9A27A"
+    },
+    "elementos": {
+      "botao_reservar": {
+        "box": [
+          96,
+          420,
+          240,
+          64
+        ],
+        "raio": 32,
+        "texto": "Reservar mesa"
+      },
+      "imagem_hero": {
+        "box": [
+          800,
+          140,
+          544,
+          480
+        ],
+        "raio": 24
+      },
+      "cards": [
+        [
+          96,
+          660,
+          400,
+          140
+        ],
+        [
+          520,
+          660,
+          400,
+          140
+        ],
+        [
+          944,
+          660,
+          400,
+          140
+        ]
+      ]
+    },
+    "textos": [
+      "Aurora Café",
+      "Cardápio",
+      "Horários",
+      "Sobre",
+      "Contato",
+      "Café que acorda a cidade",
+      "Grãos selecionados, torra artesanal e pão quente todas as manhãs.",
+      "Reservar mesa",
+      "Espresso",
+      "Pão de queijo",
+      "Bolo do dia",
+      "Feito na hora",
+      "© 2026 Aurora Café"
+    ],
+    "animacoes": "DESCONHECIDAS (imagem estática)",
+    "estados_sem_evidencia": [
+      "hover do botão",
+      "menu mobile",
+      "header fixo"
+    ]
+  },
+  "landing_result.png": {
+    "diferencas_inseridas": [
+      "botão deslocado 6 px para baixo (y 426)",
+      "cor do botão #388E3C em vez de #2E7D32",
+      "título com 'C' maiúsculo em 'Cidade' (capitalização alterada)"
+    ],
+    "regiao_esperada_do_erro": "B_hero"
+  },
+  "dashboard_ref.png": {
+    "viewport_css_px": [
+      1920,
+      1080
+    ],
+    "escala": 1,
+    "regioes": {
+      "A_sidebar": [
+        0,
+        0,
+        240,
+        1080
+      ],
+      "B_topbar": [
+        240,
+        0,
+        1680,
+        72
+      ],
+      "C_kpis": [
+        280,
+        112,
+        1600,
+        120
+      ],
+      "D_grafico_linha": [
+        280,
+        264,
+        980,
+        420
+      ],
+      "E_grafico_barras": [
+        1292,
+        264,
+        588,
+        420
+      ],
+      "F_tabela": [
+        280,
+        716,
+        1600,
+        320
+      ]
+    },
+    "cores": {
+      "sidebar": "#111827",
+      "fundo": "#F3F4F6",
+      "card": "#FFFFFF",
+      "linha_grafico": "#2563EB",
+      "barras": "#10B981"
+    },
+    "dados_reais_grafico_linha": [
+      40,
+      55,
+      48,
+      70,
+      65,
+      90,
+      85,
+      110,
+      100,
+      130,
+      125,
+      150
+    ],
+    "dados_reais_barras": [
+      320,
+      210,
+      150,
+      90
+    ],
+    "nota_dados": "Na imagem os valores só podem ser ESTIMADOS pela altura; o gabarito existe para medir o erro da estimativa.",
+    "textos": [
+      "DashPro",
+      "Visão geral",
+      "Vendas",
+      "Clientes",
+      "Relatórios",
+      "Ajustes",
+      "Receita",
+      "R$ 128.400",
+      "Pedidos",
+      "1.284",
+      "Clientes",
+      "342",
+      "Conversão",
+      "3,8%",
+      "Receita mensal",
+      "Pedidos por canal",
+      "Pedido",
+      "Cliente",
+      "Valor",
+      "Status"
+    ],
+    "animacoes": "DESCONHECIDAS (imagem estática)",
+    "estados_sem_evidencia": [
+      "tooltip dos gráficos",
+      "hover das linhas da tabela",
+      "filtros",
+      "sidebar recolhida"
+    ]
+  }
+}

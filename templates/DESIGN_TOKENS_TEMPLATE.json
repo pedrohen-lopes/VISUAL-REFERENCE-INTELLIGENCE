@@ -1,0 +1,66 @@
+{
+  "meta": {
+    "name": "nome-do-projeto",
+    "sourceReferences": ["REF-01"],
+    "mode": "1:1",
+    "viewport": { "width": 0, "height": 0, "scale": 1 },
+    "units": "css-px",
+    "allowedTags": ["OBSERVADO", "ESTIMADO", "HIPOTESE", "DESCONHECIDA", "INFERIDA", "COMPROVADA"],
+    "allowedConfidence": ["ALTA", "MEDIA", "BAIXA"]
+  },
+  "color": {
+    "primitive": {
+      "example-500": { "value": "#000000", "source": "REF-01:elemento", "tag": "ESTIMADO", "confidence": "MEDIA" }
+    },
+    "semantic": {
+      "background": { "value": "#000000", "source": "REF-01", "tag": "OBSERVADO", "confidence": "ALTA" },
+      "surface": { "value": "#000000", "source": "REF-01", "tag": "OBSERVADO", "confidence": "ALTA" },
+      "textPrimary": { "value": "#FFFFFF", "source": "REF-01", "tag": "OBSERVADO", "confidence": "ALTA" },
+      "textSecondary": { "value": "#FFFFFF", "source": "REF-01", "tag": "ESTIMADO", "confidence": "MEDIA" },
+      "primary": { "value": "#000000", "source": "REF-01", "tag": "OBSERVADO", "confidence": "ALTA" },
+      "border": { "value": "#000000", "source": "REF-01", "tag": "ESTIMADO", "confidence": "MEDIA" }
+    },
+    "gradient": {
+      "example": { "type": "linear", "angle": 180, "stops": [{ "color": "#000000", "position": 0 }, { "color": "#FFFFFF", "position": 100 }], "tag": "ESTIMADO", "confidence": "MEDIA" }
+    }
+  },
+  "typography": {
+    "fontFamily": {
+      "primary": { "value": "Inter", "alternatives": ["Roboto", "system-ui"], "fallback": "sans-serif", "tag": "HIPOTESE", "confidence": "BAIXA" }
+    },
+    "style": {
+      "body": { "fontSize": 16, "fontWeight": 400, "lineHeight": 24, "letterSpacing": 0, "tag": "ESTIMADO", "confidence": "MEDIA" },
+      "heading": { "fontSize": 32, "fontWeight": 700, "lineHeight": 40, "letterSpacing": 0, "tag": "ESTIMADO", "confidence": "MEDIA" }
+    }
+  },
+  "spacing": {
+    "scale": [4, 8, 12, 16, 24, 32],
+    "tag": "ESTIMADO",
+    "confidence": "MEDIA"
+  },
+  "layout": {
+    "container": { "maxWidth": 0, "paddingX": 0 },
+    "grid": { "columns": 12, "gutter": 24 },
+    "breakpoints": { "reference": 0 }
+  },
+  "radius": { "sm": 4, "md": 8, "lg": 16, "full": 9999 },
+  "border": { "default": { "width": 1, "color": "#000000", "style": "solid" } },
+  "shadow": {
+    "card": { "x": 0, "y": 4, "blur": 12, "spread": 0, "color": "rgba(0,0,0,0.25)", "tag": "ESTIMADO", "confidence": "BAIXA" }
+  },
+  "opacity": { "disabled": 0.5 },
+  "blur": { "backdrop": 0 },
+  "zIndex": { "base": 0, "sticky": 10, "dropdown": 20, "modal": 30, "toast": 40 },
+  "motion": {
+    "duration": { "fast": 150, "base": 300, "slow": 600 },
+    "easing": { "standard": "cubic-bezier(0.4, 0, 0.2, 1)" },
+    "tag": "HIPOTESE",
+    "confidence": "BAIXA"
+  },
+  "icon": { "size": { "md": 24 }, "strokeWidth": 2 },
+  "components": {
+    "button": {
+      "primary": { "background": "{color.semantic.primary}", "color": "{color.semantic.textPrimary}", "radius": "{radius.md}", "paddingX": 16, "paddingY": 12, "height": 44 }
+    }
+  }
+}

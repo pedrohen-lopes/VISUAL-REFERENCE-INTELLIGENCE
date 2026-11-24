@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+.venv/
+venv/
+.DS_Store
+Thumbs.db
+# saídas geradas pelos scripts
+diff_out/
+crops/
+frames/
+screenshot.png
+grid_overlay.png

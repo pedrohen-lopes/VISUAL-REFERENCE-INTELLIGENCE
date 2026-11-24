@@ -1,0 +1,5 @@
+pillow>=10.0
+numpy>=1.24
+scikit-image>=0.21
+pytesseract>=0.3.10
+playwright>=1.40
