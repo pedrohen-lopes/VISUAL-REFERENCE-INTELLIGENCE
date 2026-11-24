@@ -1,0 +1,63 @@
+{
+  "tolerancia_canal": 8,
+  "pixels_divergentes_pct": 1.453,
+  "maior_delta": 209,
+  "avisos": [],
+  "ssim": 0.9877,
+  "regioes": [
+    {
+      "regiao": "A_header",
+      "box": [
+        0,
+        0,
+        1440,
+        80
+      ],
+      "divergente_pct": 0.0,
+      "caixa_da_divergencia": null,
+      "sugestao_de_atencao": "sem divergência relevante"
+    },
+    {
+      "regiao": "B_hero",
+      "box": [
+        0,
+        80,
+        1440,
+        560
+      ],
+      "divergente_pct": 2.336,
+      "caixa_da_divergencia": [
+        96,
+        230,
+        704,
+        260
+      ],
+      "sugestao_de_atencao": "ok/Baixa (confirme visualmente)"
+    },
+    {
+      "regiao": "C_cards",
+      "box": [
+        0,
+        640,
+        1440,
+        180
+      ],
+      "divergente_pct": 0.0,
+      "caixa_da_divergencia": null,
+      "sugestao_de_atencao": "sem divergência relevante"
+    },
+    {
+      "regiao": "D_footer",
+      "box": [
+        0,
+        820,
+        1440,
+        80
+      ],
+      "divergente_pct": 0.0,
+      "caixa_da_divergencia": null,
+      "sugestao_de_atencao": "sem divergência relevante"
+    }
+  ],
+  "observacao": "A sugestão de atenção é apenas um indicador numérico. A gravidade (Crítica/Alta/Média/Baixa) deve ser decidida por inspeção das imagens, conforme instructions/STANDARDS.md."
+}
