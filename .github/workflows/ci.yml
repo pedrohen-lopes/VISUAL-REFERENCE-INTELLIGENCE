@@ -1,0 +1,54 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+
+      - name: Install dependencies
+        run: |
+          pip install -r tools/requirements.txt
+
+      - name: Run tool checks
+        run: |
+          python3 tests/run_tool_checks.py
+
+      - name: Validate tokens template
+        run: |
+          python3 tools/validate_tokens.py templates/DESIGN_TOKENS_TEMPLATE.json
+
+      - name: Check regions template syntax
+        run: |
+          python3 -c "import json; json.load(open('templates/REGIONS_TEMPLATE.json')); print('regions.json OK')"
+
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install ruff
+        run: pip install ruff
+
+      - name: Run ruff
+        run: ruff check tools/ tests/
+
+      - name: Run ruff format check
+        run: ruff format --check tools/ tests/

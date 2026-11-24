@@ -1,23 +1,43 @@
 # Changelog
 
-Formato: [Semantic Versioning](https://semver.org/lang/pt-BR/).
+Todas as mudanças notáveis neste projeto serão documentadas neste arquivo.
 
-## [2.0.0] - 2026-11-24
-### Adicionado
-- `tools/`: 12 scripts (verificação de ambiente, escala/viewport, cores, recortes, grade, OCR, relatório textual de imagem, image diff por região, screenshot com Playwright, extração de quadros, validação de tokens, montagem do pacote de entrega).
-- `claude-code-handoff/`: `CLAUDE.md`, comandos `/analisar`, `/especificar`, `/implementar`, `/validar` e README do pacote.
-- `tests/`: imagens sintéticas com gabarito, gerador reproduzível, autoteste dos scripts e kit de testes P1–P8.
-- `instructions/STANDARDS.md` (fonte única de tolerâncias, gravidade, ordem, IDs e categorias) e `instructions/SHORTCUTS.md` (atalhos).
-- `LICENSE` (MIT), `.gitignore`, este changelog.
-### Alterado
-- `CLAUDE_PROJECT_INSTRUCTIONS.md` reduzido para ~6,7 mil caracteres, com as regras de ouro e o portão de autorização; o detalhe ficou nos arquivos de conhecimento.
-- Duplicações de tolerâncias e gravidade substituídas por referências a `STANDARDS.md`.
+O formato segue [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.0/) e este projeto adere a [Semantic Versioning](https://semver.org/lang/pt-BR/).
 
-## [1.2.0] - 2026-11-24
-- Revisão de consistência; simulações; regra de autorização reescrita (autorização válida, antecipada, ambígua, escopo).
+## [Unreleased]
 
-## [1.1.0] - 2026-11-24
-- Análise forense e por regiões, motion quadro a quadro, investigação de assets, múltiplas referências, estrutura [INFERIDA], rastreabilidade REQ, avaliação por categoria.
+### Added
+- Template `REGIONS_TEMPLATE.json` para `image_diff.py`
+- GitHub Actions CI (testes, lint, validação de tokens)
+- `.editorconfig` para consistência entre editores
+- `CONTRIBUTING.md` e `SECURITY.md`
+- Exemplo completo `tokens_example.json` em `examples/`
+- Badges no README (tests, license, python)
 
-## [1.0.0] - 2026-11-24
-- Estrutura inicial: instruções, templates e exemplo.
+### Changed
+- `make_handoff.py` agora usa `REGIONS_TEMPLATE.json` em vez de formato hardcoded
+- Branch padrão renomeada de `master` para `main`
+
+### Fixed
+- `spec/regions.json` gerado com estrutura correta esperada por `image_diff.py`
+
+## [0.2.0] - 2026-11-24
+
+### Added
+- Kit completo de engenharia reversa visual (VRI)
+- 11 arquivos de instruções em `instructions/`
+- 7 templates em `templates/`
+- 13 scripts Python em `tools/`
+- Pacote de entrega para Claude Code (`claude-code-handoff/`)
+- Kit de testes com imagens sintéticas (`tests/`)
+- Exemplos de fluxo e simulações (`examples/`)
+
+## [0.1.0] - 2026-11-20
+
+### Added
+- Estrutura inicial do projeto
+- `CLAUDE_PROJECT_INSTRUCTIONS.md` com regras de ouro, fluxo e portão de autorização
+- `STANDARDS.md` com tolerâncias, gravidades, ordem de execução e IDs
+- Scripts base: `check_env.py`, `image_info.py`, `sample_colors.py`, `crop_regions.py`, `grid_overlay.py`, `ocr_text.py`, `image_report.py`, `image_diff.py`, `screenshot.py`, `extract_frames.py`, `validate_tokens.py`, `make_handoff.py`
+- Templates base: especificação, tokens, componentes, critérios de aceitação
+- Licença MIT

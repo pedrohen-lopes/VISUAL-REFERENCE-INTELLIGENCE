@@ -4,9 +4,19 @@ __pycache__/
 venv/
 .DS_Store
 Thumbs.db
+*.egg-info/
+dist/
+build/
+.pytest_cache/
+.coverage
+htmlcov/
+.mypy_cache/
+.ruff_cache/
+
 # saídas geradas pelos scripts
 diff_out/
 crops/
 frames/
 screenshot.png
 grid_overlay.png
+*.log

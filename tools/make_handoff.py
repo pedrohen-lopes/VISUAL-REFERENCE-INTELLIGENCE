@@ -50,12 +50,12 @@ mapping = {
     "DESIGN_TOKENS_TEMPLATE.json": "tokens.json",
     "COMPONENT_INVENTORY_TEMPLATE.md": "components.md",
     "ACCEPTANCE_CRITERIA_TEMPLATE.md": "acceptance.md",
+    "REGIONS_TEMPLATE.json": "regions.json",
 }
 for src, name in mapping.items():
     put(KIT / "templates" / src, target / "spec" / name)
 write(target / "spec" / "requirements.md",
       "# Matriz de requisitos\n\n| REQ | Requisito | Origem (REF/VIDEO) | Tag | Confiança | Critério | Status |\n|---|---|---|---|---|---|---|\n")
-write(target / "spec" / "regions.json", '{\n  "A_exemplo": [0, 0, 100, 100]\n}\n')
 for d in ("references", "assets", "reports"):
     write(target / d / ".gitkeep", "")
 print("\n".join(log))
